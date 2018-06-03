@@ -1,9 +1,11 @@
-import express from 'express'
-import setupMiddware from './middleware'
-import { restRouter } from './api'
-import { connect } from './db'
-import { signin, protect } from './api/modules/auth'
+import express from 'express';
+import setupMiddware from './middleware';
+import { restRouter } from './api';
+import { connect } from './db';
+import { signin, protect } from './api/modules/auth';
 // Declare an app from express
-const app = null
+const app = express();
 
-export default app
+app.get('/', (req, res) => res.json({ ok: 'Hello World' }));
+
+export default app;
