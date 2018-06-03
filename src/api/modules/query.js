@@ -1,57 +1,52 @@
-import merge from 'lodash.merge'
-const testData = {message: 'hello'}
+import merge from 'lodash.merge';
+const testData = { message: 'hello' };
 
 // These are generic methods used in the generic controllers for all models
 export const controllers = {
   createOne(model, body) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
   },
 
   updateOne(docToUpdate, update) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
   },
 
   deleteOne(docToDelete) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
   },
 
   getOne(docToGet) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
   },
 
   getAll(model) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
   },
 
   findByParam(model, id) {
-    return Promise.resolve(testData)
+    return Promise.resolve(testData);
+  },
+};
+
+export const createOne = model => async (req, res, next) => {
+  try {
+    const { body } = req;
+    const result = await controllers.createOne(model, body);
+    return res.json(result);
+  } catch(e) {
+    console.log(e)
   }
-}
+};
 
-export const createOne = (model) => (req, res, next) => {
+export const updateOne = model => async (req, res, next) => {};
 
-}
+export const deleteOne = model => (req, res, next) => {};
 
-export const updateOne = (model) => async (req, res, next) => {
+export const getOne = model => (req, res, next) => {};
 
-}
+export const getAll = model => (req, res, next) => {};
 
-export const deleteOne = (model) => (req, res, next) => {
-
-}
-
-export const getOne = (model) => (req, res, next) => {
-
-}
-
-export const getAll = (model) => (req, res, next) => {
-
-}
-
-export const findByParam = (model) => (req, res, next, id) => {
-  
-}
-
+export const findByParam = model => (req, res, next, id) => {};
 
 export const generateControllers = (model, overrides = {}) => {
   const defaults = {
@@ -60,8 +55,8 @@ export const generateControllers = (model, overrides = {}) => {
     getOne: getOne(model),
     deleteOne: deleteOne(model),
     updateOne: updateOne(model),
-    createOne: createOne(model)
-  }
+    createOne: createOne(model),
+  };
 
-  return {...defaults, ...overrides}
-}
+  return { ...defaults, ...overrides };
+};
