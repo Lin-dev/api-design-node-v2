@@ -3,7 +3,7 @@ import createApiSpec from '~/apiSpecs'
 import { Song, schema } from './song.model'
 
 describe('Song model', () => {
-  it('should have tilte', () => {
+  it('should have title', () => {
     expect(schema.title).to.exist
     expect(schema.title.required).to.be.an('array')
   })

@@ -1,9 +1,23 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 export const schema = {
-  
-}
+  title: {
+    type: String,
+    required: [true, 'Please include a title'],
+  },
 
-const playlistSchema = new mongoose.Schema(schema)
+  songs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'song',
+  }],
 
-export const Playlist = mongoose.model('playlist', playlistSchema)
+  favorite: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+};
+
+const playlistSchema = new mongoose.Schema(schema);
+
+export const Playlist = mongoose.model('playlist', playlistSchema);
